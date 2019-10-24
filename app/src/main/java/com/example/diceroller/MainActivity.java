@@ -11,16 +11,26 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText userInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userInput = (EditText) findViewById(R.id.userInput);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,12 +69,21 @@ public class MainActivity extends AppCompatActivity {
     public void on_button_click(View view){
 
         TextView tv = this.findViewById(R.id.numberTextView);
+        Random rnd = new Random();
+        int num = rnd.nextInt(6);
 
-        Random r = new Random();
+        tv.setText(Integer.toString(num));
 
-        int number = r.nextInt((6 - 1 + 1)+1);
+        int n = Integer.parseInt(userInput.getText().toString());
 
-        tv.setText(Integer.toString(number));
+            if (n < 1 || n > 6){
+                Toast.makeText(this, "Please pick a number between 1-6", Toast.LENGTH_SHORT).show();
+            }
+            else if (n == num) {
+                Toast.makeText(this, "Congratulations! You got it right!", Toast.LENGTH_SHORT).show();
+
+            }
 
     }
+
 }
