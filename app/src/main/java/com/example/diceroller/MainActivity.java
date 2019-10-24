@@ -22,6 +22,10 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
     private EditText userInput;
+    private int Points = 0;
+    private TextView Pointsview;
+    private TextView PointsCounter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         userInput = (EditText) findViewById(R.id.userInput);
-
+        Pointsview = (TextView) findViewById(R.id.pv);
+        PointsCounter = (TextView) findViewById(R.id.pc);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (n == num) {
                 Toast.makeText(this, "Congratulations! You got it right!", Toast.LENGTH_SHORT).show();
-
+                Points = Points + 1;
+                Pointsview.setText(Integer.toString(Points));
             }
 
     }

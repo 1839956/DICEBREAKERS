@@ -2,4 +2,6 @@
 <resources>
     <item name="numberEntered" type="id" />
     <item name="userInput" type="id" />
+    <item name="pv" type="id" />
+    <item name="pc" type="id" />
 </resources>
