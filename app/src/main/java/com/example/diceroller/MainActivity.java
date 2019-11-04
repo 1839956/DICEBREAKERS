@@ -13,9 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private int Points = 0;
     private TextView Pointsview;
     private TextView PointsCounter;
-
+    private TextView ls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         userInput = (EditText) findViewById(R.id.userInput);
-        Pointsview = (TextView) findViewById(R.id.pv);
-        PointsCounter = (TextView) findViewById(R.id.pc);
+        Pointsview =  findViewById(R.id.pv);
+        PointsCounter =  findViewById(R.id.pc);
+        ls = findViewById(R.id.ls);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,11 +74,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public int random_number()
+    {
+        Random rand = new Random();
+        int number = rand.nextInt(6);
+        return number;
+    }
+
+
     public void on_button_click(View view){
 
+        int num = random_number();
+
         TextView tv = this.findViewById(R.id.numberTextView);
-        Random rnd = new Random();
-        int num = rnd.nextInt(6);
 
         tv.setText(Integer.toString(num));
 
@@ -89,7 +100,29 @@ public class MainActivity extends AppCompatActivity {
                 Points = Points + 1;
                 Pointsview.setText(Integer.toString(Points));
             }
-
     }
+     public void on_dice_breaker_click(View view)
+     {
+         Random random = new Random();
+         String d = "";
+         int element_number = 1;
+
+         ArrayList<String> question = new ArrayList<>();
+
+         question.add("1. If you could go anywhere in the world, where would you go?");
+         question.add("2. If you were stranded on a desert island, what three things would you want to take with you?");
+         question.add("3. If you could eat only one food for the rest of your life, what would it be?");
+         question.add("4. If you won a million dollars, what is the first thing you would buy?");
+         question.add("5. If you could spend the day with one fictional character, who would it be?");
+         question.add("6. If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+
+         for(int i = 0; i < element_number ; i++)
+         {
+             int number = random.nextInt(question.size());
+             String rndElement = question.get(number);
+             ls.setText (rndElement);
+         }
+
+     }
 
 }
